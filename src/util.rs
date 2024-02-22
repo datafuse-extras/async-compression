@@ -28,7 +28,7 @@ impl<B: AsRef<[u8]>> PartialBuffer<B> {
         &mut self.buffer
     }
 
-    pub(crate) fn into_inner(self) -> B {
+    pub fn into_inner(self) -> B {
         self.buffer
     }
 }
