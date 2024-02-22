@@ -174,7 +174,7 @@ pub enum Level {
 
 impl Level {
     #[cfg(feature = "brotli")]
-    fn into_brotli(
+    pub fn into_brotli(
         self,
         mut params: ::brotli::enc::backward_references::BrotliEncoderParams,
     ) -> ::brotli::enc::backward_references::BrotliEncoderParams {
@@ -189,7 +189,7 @@ impl Level {
     }
 
     #[cfg(feature = "bzip2")]
-    fn into_bzip2(self) -> bzip2::Compression {
+    pub fn into_bzip2(self) -> bzip2::Compression {
         let fastest = bzip2::Compression::fast();
         let best = bzip2::Compression::best();
 
@@ -207,7 +207,7 @@ impl Level {
     }
 
     #[cfg(feature = "flate2")]
-    fn into_flate2(self) -> flate2::Compression {
+    pub fn into_flate2(self) -> flate2::Compression {
         let fastest = flate2::Compression::fast();
         let best = flate2::Compression::best();
 
@@ -225,7 +225,7 @@ impl Level {
     }
 
     #[cfg(feature = "zstd")]
-    fn into_zstd(self) -> i32 {
+    pub fn into_zstd(self) -> i32 {
         let (fastest, best) = libzstd::compression_level_range().into_inner();
         match self {
             Self::Fastest => fastest,
@@ -236,7 +236,7 @@ impl Level {
     }
 
     #[cfg(feature = "xz2")]
-    fn into_xz2(self) -> u32 {
+    pub fn into_xz2(self) -> u32 {
         match self {
             Self::Fastest => 0,
             Self::Best => 9,
